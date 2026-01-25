@@ -31,7 +31,7 @@ def main():
     curso = next(c for c in cursos if c.name == curso_nombre)
     clases = curso.clases
 
-    acciones = ['Nueva nota', 'Compilar master', 'Editar una nota', 'Compilar todo (drive)']
+    acciones = ['Nueva nota', 'Compilar master', 'Editar una nota']
     accion = wofi_menu(acciones, f"Selecciona acción para el curso {curso_nombre}:")
 
     if accion == 'Nueva nota':
