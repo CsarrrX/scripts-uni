@@ -1,0 +1,14 @@
+# Google API Auth
+credentials.json
+token.pickle
+
+# LaTeX build files (ya que compilas en build/)
+build/
+*.aux
+*.log
+*.fls
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
