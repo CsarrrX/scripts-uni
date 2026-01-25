@@ -1,0 +1,168 @@
+% =========================
+% Básicos
+% =========================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[spanish]{babel}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{emptypage}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% =========================
+% Matemáticas
+% =========================
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{mathrsfs}
+\usepackage{cancel}
+\usepackage{bm}
+\usepackage{systeme}
+\usepackage{stmaryrd}
+
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\epsilon\varepsilon
+
+\DeclareMathOperator{\sgn}{sgn}
+
+% =========================
+% Teoremas (estilo)
+% =========================
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\mdfsetup{skipabove=1em,skipbelow=0em}
+\theoremstyle{definition}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+    }
+]{thmgreenbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+    }
+]{thmbluebox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!5,
+    }
+]{thmredbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black},
+    bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!1,
+    },
+    qed=\qedsymbol
+]{thmproofbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black},
+    bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
+    },
+]{thmexplanationbox}
+
+% =========================
+% Entornos (español)
+% =========================
+\declaretheorem[style=thmgreenbox, name=Definición]{definicion}
+\declaretheorem[style=thmredbox, name=Teorema]{teorema}
+\declaretheorem[style=thmredbox, name=Proposición]{proposicion}
+\declaretheorem[style=thmredbox, name=Lema]{lema}
+\declaretheorem[style=thmredbox, numbered=no, name=Corolario]{corolario}
+\declaretheorem[style=thmbluebox, numbered=no, name=Ejemplo]{ejemplo}
+\declaretheorem[style=thmbluebox, numbered=no, name=Borrador]{borrador}
+
+\declaretheorem[style=thmproofbox, name=Demostración]{replacementproof}
+\renewenvironment{proof}{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
+
+\declaretheorem[style=thmexplanationbox, name=Explicación]{tmpexplanation}
+\newenvironment{explicacion}{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
+
+\declaretheorem[style=thmbluebox, numbered=no, name=Observación]{observacion}
+\declaretheorem[style=thmbluebox, numbered=no, name=Nota]{nota}
+
+\usepackage{xifthen}
+
+
+% =========================
+% Clase...
+% =========================
+\newcommand{\clase}[3]{%
+    \ifthenelse{\isempty{#3}}{%
+        \def\@clase{Clase #1}%
+    }{%
+        \def\@clase{Clase #1: #3}%
+    }%
+    \subsection*{\@clase}
+    \marginpar{\small\textsf{#2}}
+}
+% fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% \fancyhead[LE,RO]{Gilles Castel}
+\fancyhead[RO,LE]{\@clase}
+\fancyhead[RE,LO]{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[C]{\leftmark}
+
+\makeatother
+
+
+% =========================
+% Encabezados
+% =========================
+
+% =========================
+% Figuras externas
+% =========================
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+% =========================
+% Autor
+% =========================
+\author{César Pérez Amador}
+
