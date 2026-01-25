@@ -41,7 +41,7 @@ class Clase():
             self.titulo = titulo
             self.curso = curso
 
-        def editar(): # Abre una terminal de nvim con el file
+        def editar(self): # Abre una terminal de nvim con el file
             subprocess.Popen([
                 "kitty",
                 "nvim",
