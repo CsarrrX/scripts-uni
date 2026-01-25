@@ -43,9 +43,10 @@ class Clase():
 
     def editar(self): # Abre una terminal de nvim con el file
         subprocess.Popen([
-            "kitty",
-            "zsh", "-c", f"nvim {self.file_path}"
-        ])
+            "kitty", 
+            "--detach", # Permite que kitty corra independientemente del script
+            "zsh", "-is", "eval", f"nvim '{self.file_path}'"
+        ], cwd=str(self.curso.path))
 
     def __str__(self): # Como se ven representadas nuestras clases en strings
         return f"<Clase {self.curso.info['short']} {self.number} {self.titulo}" 
