@@ -18,12 +18,16 @@ def wofi_menu(opciones, prompt='Selecciona notas'):
 
 def main():
     cursos = Cursos()
-    nombres_cursos = [c.name for c in cursos]
+    nombres_cursos = [c.name for c in cursos if c.name != "cursoact"] + ["Compilar todo (drive)"]
 
     curso_nombre = wofi_menu(nombres_cursos, 'Selecciona un curso:')
     if not curso_nombre:
         return -1 
-    
+
+    if curso_nombre == "Compilar todo (drive)":
+        compilar_todo.main()
+        return -1
+
     curso = next(c for c in cursos if c.name == curso_nombre)
     clases = curso.clases
 
@@ -64,8 +68,6 @@ def main():
             clases.update_clases_master(r)
             clases.compile_master()
 
-    elif accion == 'Compilar todo (drive)': 
-        compilar_todo.main()
 
 if __name__ == "__main__":
     main()
