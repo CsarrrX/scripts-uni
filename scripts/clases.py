@@ -41,15 +41,15 @@ class Clase():
             self.titulo = titulo
             self.curso = curso
 
-        def editar(self): # Abre una terminal de nvim con el file
-            subprocess.Popen([
-                "kitty",
-                "nvim",
-                str(self.file_path)
-            ])
+    def editar(self): # Abre una terminal de nvim con el file
+        subprocess.Popen([
+            "kitty",
+            "nvim",
+            str(self.file_path)
+        ])
 
-        def __str__(self): # Como se ven representadas nuestras clases en strings
-            return f"<Clase {self.curso.info['short']} {self.number} {self.titulo}" 
+    def __str__(self): # Como se ven representadas nuestras clases en strings
+        return f"<Clase {self.curso.info['short']} {self.number} {self.titulo}" 
 
         
 # Segunda clase importante: Clases, hereda de lists y sabe auto-llenarse con las Clases
