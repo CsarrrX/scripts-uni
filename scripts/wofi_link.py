@@ -58,7 +58,7 @@ def main():
         notas = [n.file_path.stem for n in clases]
         nota_stem = wofi_menu(notas, 'Selecciona una nota:')
         if nota_stem:
-            nota = next(n for n in clases if n.stem == nota_stem)
+            nota = next(n for n in clases if n.file_path.stem == nota_stem)
             nota.editar()
             r = clases.parser_clase_range(nota.number)
             clases.update_clases_master(r)
