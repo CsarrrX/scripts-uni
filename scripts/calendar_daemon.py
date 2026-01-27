@@ -128,12 +128,4 @@ def schedule_updates():
     scheduler.run()
 
 if __name__ == '__main__':
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(script_dir)
-
-    while True:
-        try:
-            schedule_updates()
-        except Exception as e:
-            time.sleep(10) 
-            continue
+    schedule_updates()
