@@ -11,7 +11,7 @@ El sistema requiere las siguientes herramientas y librerías:
 - **LaTeX** (específicamente `latexmk` para la compilación automática)
 - **Neovim** (`nvim`): Editor de texto predeterminado para las notas.
 - **Kitty**: Emulador de terminal usado para abrir las sesiones de edición.
-- **Wofi**: Menú dinámico para Wayland, usado como interfaz gráfica de selección.
+- **Rofi**: Menú dinámico para X11, usado como interfaz gráfica de selección.
 - **Zsh**: Shell utilizada en los comandos de subproceso.
 
 ### Python
@@ -57,8 +57,8 @@ Maneja la abstracción de los cursos y la navegación entre ellos.
     *   Escanea el directorio raíz (`PARENT_ROOT`) para descubrir todos los cursos disponibles.
     *   **Propiedad `current`**: Gestiona un enlace simbólico (`symlink`) que apunta al curso "activo". Esto permite acceder rápidamente a las notas del curso actual desde otros scripts o la terminal.
 
-### `scripts/wofi_link.py`
-Provee una interfaz gráfica rápida (GUI) utilizando `wofi`.
+### `scripts/rofi_link.py`
+Provee una interfaz gráfica rápida (GUI) utilizando `rofi`.
 
 *   **Flujo Principal**:
     1.  Despliega una lista de cursos disponibles.
@@ -70,7 +70,6 @@ Servicio en segundo plano para la automatización contextual.
 
 *   **`activate_course(event)`**: Recibe un evento de calendario, busca si coincide con algún curso registrado y actualiza el symlink del curso actual (`Cursos.current`).
 *   **`get_events()`**: Consulta la API de Google Calendar para obtener los eventos del día actual.
-*   **Integración Waybar**: Imprime el estado actual en formato JSON para ser consumido por módulos de Waybar.
 
 ### `scripts/compilar_todo.py`
 Script de mantenimiento y respaldo.
