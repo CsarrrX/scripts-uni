@@ -2,11 +2,10 @@ import subprocess
 from cursos import Cursos
 import compilar_todo 
 
-
-def wofi_menu(opciones, prompt='Selecciona notas'):
-    #Ejecutamos wofi: 
+def rofi_menu(opciones, prompt='Selecciona notas'):
+    # Ejecutamos rofi en modo dmenu
     proceso = subprocess.Popen(
-        ['wofi', '--dmenu', '-p', prompt],
+        ['rofi', '-dmenu', '-p', prompt, '-i'], # -i es para que no importe mayúsculas/minúsculas
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -20,7 +19,8 @@ def main():
     cursos = Cursos()
     nombres_cursos = [c.name for c in cursos if c.name != "cursoact"] + ["Compilar todo (drive)", "Crear nota en cursoact"]
 
-    curso_nombre = wofi_menu(nombres_cursos, 'Selecciona un curso:')
+    # Usamos la función actualizada
+    curso_nombre = rofi_menu(nombres_cursos, 'Selecciona un curso:')
     if not curso_nombre:
         return -1 
 
@@ -30,7 +30,6 @@ def main():
 
     if curso_nombre == "Crear nota en cursoact":
         cursoact = next(c for c in cursos if c.name == "cursoact")
-        clases = cursoact.clases
         nueva = cursoact.clases.nueva_clase()
         nueva.editar()
         return -1
@@ -39,7 +38,8 @@ def main():
     clases = curso.clases
 
     acciones = ['Nueva nota', 'Compilar master', 'Editar una nota']
-    accion = wofi_menu(acciones, f"Selecciona acción para el curso {curso_nombre}:")
+    # Cambiado de wofi_menu a rofi_menu
+    accion = rofi_menu(acciones, f"Acción para {curso_nombre}:")
 
     if accion == 'Nueva nota':
         nueva = curso.clases.nueva_clase()
@@ -52,29 +52,24 @@ def main():
         clases.compile_master()
 
     elif accion == 'Compilar master':
-        try:
-            rango_str = subprocess.check_output(
-            ["wofi", "--dmenu", "--print-query", "--prompt", "Rango (ej: previa-ultima):"],
-            text=True
-            ).strip().split('\n')[-1]
-            
-            if rango_str: 
-                r = clases.parser_clase_range(rango_str)
-                clases.update_clases_master(r)
-                clases.compile_master()
-        except subprocess.CalledProcessError:
-            pass # Si presionas ESC en wofi
+        # Para pedir un texto libre en rofi, simplemente no le pasamos opciones
+        # o usamos el mismo rofi_menu pero escribiendo algo nuevo
+        rango_str = rofi_menu([], "Rango (ej: previa-ultima):")
+        
+        if rango_str: 
+            r = clases.parser_clase_range(rango_str)
+            clases.update_clases_master(r)
+            clases.compile_master()
 
     elif accion == 'Editar una nota':
         notas = [n.file_path.stem for n in clases]
-        nota_stem = wofi_menu(notas, 'Selecciona una nota:')
+        nota_stem = rofi_menu(notas, 'Selecciona una nota:')
         if nota_stem:
             nota = next(n for n in clases if n.file_path.stem == nota_stem)
             nota.editar()
             r = clases.parser_clase_range(nota.number)
             clases.update_clases_master(r)
             clases.compile_master()
-
 
 if __name__ == "__main__":
     main()
