@@ -30,8 +30,6 @@
 \let\iff\Leftrightarrow
 \let\epsilon\varepsilon
 
-\DeclareMathOperator{\sgn}{sgn}
-
 % =========================
 % Teoremas (estilo)
 % =========================
@@ -129,6 +127,17 @@
     \subsection*{\@clase}
     \marginpar{\small\textsf{#2}}
 }
+
+% =========================
+% Cancel Color
+% =========================
+
+\newcommand{\colorcancel}[2]{\renewcommand{\CancelColor}{\color{#2}}\cancel{#1}}
+
+% =========================
+% Encabezados
+% =========================
+
 % fancy headers
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -140,11 +149,6 @@
 \fancyfoot[C]{\leftmark}
 
 \makeatother
-
-
-% =========================
-% Encabezados
-% =========================
 
 % =========================
 % Figuras externas
