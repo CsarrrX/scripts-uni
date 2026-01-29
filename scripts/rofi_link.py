@@ -48,7 +48,7 @@ def main():
             r = clases.parser_clase_range("previa-ultima")
             clases.update_clases_master(r)
         else:
-            r = clases.parser_clase_range(1)
+            r = clases.parser_clase_range("1")
         clases.compile_master()
 
     elif accion == 'Compilar master':
