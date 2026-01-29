@@ -67,8 +67,11 @@ def main():
         if nota_stem:
             nota = next(n for n in clases if n.file_path.stem == nota_stem)
             nota.editar()
-            r = clases.parser_clase_range(str(nota.number))
-            clases.update_clases_master(r)
+            if nota.number != 1:
+                r = clases.parser_clase_range(str(nota.number - 1) + "-" + str(nota.number))
+                clases.update_clases_master(r)
+            else:
+                r =  clases.parser_clase_range("1")
             clases.compile_master()
 
 if __name__ == "__main__":
