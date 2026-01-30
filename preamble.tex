@@ -92,9 +92,27 @@
     },
 ]{thmexplanationbox}
 
-% =========================
-% Entornos (español)
-% =========================
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{MediumPurple!70!black},
+    bodyfont=\normalfont,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=MediumPurple, backgroundcolor=MediumPurple!5,
+    }
+]{thmexbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{Gray!70!black},
+    bodyfont=\normalfont,
+    numbered=no,
+    mdframed={
+        linewidth=2pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Gray, backgroundcolor=Gray!2,
+    }
+]{thmsolbox}
+
 \declaretheorem[style=thmgreenbox, name=Definición]{definicion}
 \declaretheorem[style=thmredbox, name=Teorema]{teorema}
 \declaretheorem[style=thmredbox, name=Proposición]{proposicion}
@@ -102,6 +120,7 @@
 \declaretheorem[style=thmredbox, numbered=no, name=Corolario]{corolario}
 \declaretheorem[style=thmbluebox, numbered=no, name=Ejemplo]{ejemplo}
 \declaretheorem[style=thmbluebox, numbered=no, name=Borrador]{borrador}
+\declaretheorem[style=thmexbox, name=Ejercicio]{ejercicio}
 
 \declaretheorem[style=thmproofbox, name=Demostración]{replacementproof}
 \renewenvironment{proof}{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
@@ -111,6 +130,9 @@
 
 \declaretheorem[style=thmbluebox, numbered=no, name=Observación]{observacion}
 \declaretheorem[style=thmbluebox, numbered=no, name=Nota]{nota}
+
+\declaretheorem[style=thmsolbox, name=Solución]{solucionenv}
+\renewenvironment{solucion}{\vspace{-10pt}\begin{solucionenv}}{\end{solucionenv}}
 
 \usepackage{xifthen}
 
