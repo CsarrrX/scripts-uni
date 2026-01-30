@@ -34,7 +34,7 @@ class Cursos(list):
         list.__init__(self, self.read_files()) # Al iniciar crea una lista de Cursos, con base en sus paths
 
     def read_files(self):
-        directorios_cursos = [x for x in PARENT_ROOT.iterdir() if x.is_dir()]
+        directorios_cursos = [x for x in PARENT_ROOT.iterdir() if x.is_dir() and x.name != ".git"]
         _cursos = [Curso(path) for path in directorios_cursos]
         return sorted(_cursos, key=lambda c: c.name)
 
