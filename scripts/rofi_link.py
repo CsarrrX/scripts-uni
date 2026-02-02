@@ -45,7 +45,7 @@ def main():
         nueva = curso.clases.nueva_clase()
         nueva.editar()
         if nueva.number != 1:
-            r = clases.parser_clase_range("previa-ultima")
+            r = clases.parser_clase_range(str(nueva.number - 1) + "-" + str(nueva.number))
             clases.update_clases_master(r)
         else:
             r = clases.parser_clase_range("1")
