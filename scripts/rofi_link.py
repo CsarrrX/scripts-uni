@@ -2,6 +2,8 @@ import subprocess
 from cursos import Cursos
 import compilar_todo 
 
+from generar_formulario import generar_formulario
+
 def rofi_menu(opciones, prompt='Selecciona notas'):
     # Ejecutamos rofi en modo dmenu
     proceso = subprocess.Popen(
@@ -37,7 +39,7 @@ def main():
     curso = next(c for c in cursos if c.name == curso_nombre)
     clases = curso.clases
 
-    acciones = ['Nueva nota', 'Compilar master', 'Editar una nota']
+    acciones = ['Nueva nota', 'Compilar master', 'Editar una nota', 'Generar formulario']
     # Cambiado de wofi_menu a rofi_menu
     accion = rofi_menu(acciones, f"Acción para {curso_nombre}:")
 
@@ -73,6 +75,9 @@ def main():
             else:
                 r =  clases.parser_clase_range("1")
             clases.compile_master()
+
+    elif accion == 'Generar formulario':
+        generar_formulario(curso)
 
 if __name__ == "__main__":
     main()
