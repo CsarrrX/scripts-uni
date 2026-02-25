@@ -46,17 +46,19 @@ def main():
     if accion == 'Nueva nota':
         nueva = curso.clases.nueva_clase()
         nueva.editar()
-        if nueva.number != 1:
-            r = clases.parser_clase_range(str(nueva.number - 1) + "-" + str(nueva.number))
-            clases.update_clases_master(r)
-        else:
-            r = clases.parser_clase_range("1")
+
+        idx = str(nueva.number)
+        rango_str = f"{nueva.number - 1}-{idx}" if nueva.number > 1 else idx
+        
+        r = clases.parser_clase_range(rango_str)
+        clases.update_clases_master(r)
         clases.compile_master()
 
     elif accion == 'Compilar master':
         # Para pedir un texto libre en rofi, simplemente no le pasamos opciones
         # o usamos el mismo rofi_menu pero escribiendo algo nuevo
-        rango_str = rofi_menu([], "Rango (ej: previa-ultima):")
+        opciones_master = ['todas', 'ultima', 'previa-ultima']
+        rango_str = rofi_menu(opciones_master, "Rango (ej: previa-ultima):")
         
         if rango_str: 
             r = clases.parser_clase_range(rango_str)
