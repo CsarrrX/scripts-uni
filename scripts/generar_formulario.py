@@ -9,7 +9,6 @@ ENTORNOS = [
     "corollary", "corolario",
     "definition", "definicion", "definición",
     "metodo",
-    "ejemplo",
 ]
 
 def obtener_preambulo_master(curso):
