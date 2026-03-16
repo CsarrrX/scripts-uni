@@ -127,14 +127,10 @@ class Clases(list):
         nueva_clase_path.touch() # Creamos el archivo
         nueva_clase_path.write_text(f'\\clase{{{nueva_clase_number}}}{{{fecha}}}{{}}\n') # Añadimos nuestro identificador
 
-        # Añadimos las dos ultimas clases
-        if nueva_clase_number == 1:
-            self.update_clases_master([1])
-        else:
-            self.update_clases_master([nueva_clase_number - 1, nueva_clase_number])
-
         # Actualizamos el tamaño de la lista
-        self.read_files()
+        nuevos_archivos = self.read_files()
+        self.clear()
+        self.extend(nuevos_archivos)
 
         # Creamos una nueva clase
         l = Clase(nueva_clase_path, self.curso)

@@ -30,11 +30,11 @@ def main():
     if curso_nombre == "Crear nota en cursoact":
         cursoact = next(c for c in cursos if c.name == "cursoact")
         nueva = cursoact.clases.nueva_clase()
-        cursoact.clases.read_files()
 
         r = cursoact.clases.parser_clase_range("ultima")
         cursoact.clases.update_clases_master(r)
         cursoact.clases.compile_master()
+
         nueva.editar()
         return -1
 
@@ -45,14 +45,13 @@ def main():
     accion = rofi_menu(acciones, f"Acción para {curso_nombre}:")
 
     if accion == 'Nueva nota':
-        nueva = curso.clases.nueva_clase()
-        nueva.editar()
-
-        clases.read_files()
+        nueva = clases.nueva_clase()
 
         r = clases.parser_clase_range("ultima")
         clases.update_clases_master(r)
         clases.compile_master()
+
+        nueva.editar()
 
     elif accion == 'Compilar master':
         opciones_master = ['todas', 'ultima', 'previa-ultima']
