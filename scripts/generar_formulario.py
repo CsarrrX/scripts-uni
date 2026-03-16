@@ -3,11 +3,11 @@ from pathlib import Path
 
 # Configuración de entornos a capturar
 ENTORNOS = [
-    "theorem", "teorema",
-    "lemma", "lema",
-    "proposition", "proposicion", "proposición",
-    "corollary", "corolario",
-    "definition", "definicion", "definición",
+    "teorema",
+    "lema",
+    "proposicion"
+    "corolario",
+    "definicion", 
     "metodo",
 ]
 
@@ -66,7 +66,6 @@ def generar_formulario(curso):
     """
     print(f"--- Generando formulario para: {curso.name} ---")
     
-    # 1. Obtener el preámbulo real de TU master.tex
     preambulo = obtener_preambulo_master(curso)
     
     contenido_body = []
@@ -78,10 +77,6 @@ def generar_formulario(curso):
     contenido_body.append(r"\tableofcontents")
     contenido_body.append(r"\newpage")
 
-    # 2. Iterar usando TU estructura de Clases (ya ordenadas por número)
-    # Accedemos a curso.clases.read_files() implícitamente al iterar sobre curso.clases
-    # pero como Clases es una lista lazy-loaded en tu código original, hacemos esto:
-    
     clases_lista = curso.clases # Esto instancia la clase Clases y lee los archivos
     
     if not clases_lista:
@@ -98,7 +93,6 @@ def generar_formulario(curso):
             bloques = extraer_bloques(texto)
             
             if bloques:
-                # Header bonito para separar clases
                 fecha_str = clase.fecha.strftime("%d/%m")
                 titulo_seccion = f"Clase {clase.number}: {clase.titulo} ({fecha_str})"
                 
