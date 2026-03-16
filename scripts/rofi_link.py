@@ -30,6 +30,11 @@ def main():
     if curso_nombre == "Crear nota en cursoact":
         cursoact = next(c for c in cursos if c.name == "cursoact")
         nueva = cursoact.clases.nueva_clase()
+        cursoact.clases.read_files()
+
+        r = cursoact.clases.parser_clase_range("ultima")
+        cursoact.clases.update_clases_master(r)
+        cursoact.clases.compile_master()
         nueva.editar()
         return -1
 
@@ -43,7 +48,9 @@ def main():
         nueva = curso.clases.nueva_clase()
         nueva.editar()
 
-        r = clases.parser_clase_range("todas")
+        clases.read_files()
+
+        r = clases.parser_clase_range("ultima")
         clases.update_clases_master(r)
         clases.compile_master()
 
