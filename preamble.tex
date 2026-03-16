@@ -5,15 +5,26 @@
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage[spanish]{babel}
+\usepackage{microtype}
 \usepackage{url}
+\usepackage{ragged2e}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{emptypage}
+\usepackage{booktabs} 
+\usepackage{tabularx}
 \usepackage{subcaption}
 \usepackage{multicol}
 \usepackage[usenames,dvipsnames]{xcolor}
+% \usepackage{hyperref}
+% \hypersetup{
+%     colorlinks,
+%     linkcolor={black},
+%     citecolor={black},
+%     urlcolor={blue!80!black}
+% }
 
 % =========================
 % Matemáticas
@@ -31,112 +42,87 @@
 \let\epsilon\varepsilon
 
 % =========================
-% Teoremas (estilo)
+% Teoremas y Cajas 
 % =========================
+
+% Colores Personalizados
+\definecolor{theorembg}{RGB}{245, 255, 250}   
+\definecolor{theoremlines}{RGB}{0, 100, 0}   
+\definecolor{exercisebg}{RGB}{245, 245, 255}
+\definecolor{exerciselines}{RGB}{0, 0, 100}
+\definecolor{proofit}{RGB}{50, 50, 50}    
 \usepackage{thmtools}
 \usepackage[framemethod=TikZ]{mdframed}
 
-\mdfsetup{skipabove=1em,skipbelow=0em}
-\theoremstyle{definition}
+\mdfsetup{skipabove=1em, skipbelow=1em}
 
 \declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+    headfont=\bfseries\sffamily,
     bodyfont=\normalfont,
     mdframed={
-        linewidth=2pt,
-        rightline=false, topline=false, bottomline=false,
-        linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+        backgroundcolor=theorembg,
+        linecolor=theoremlines,
+        linewidth=0.5pt,
+        innertopmargin=8pt,
+        innerbottommargin=8pt,
+        nobreak=true,
     }
-]{thmgreenbox}
+]{THMs}
 
 \declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{NavyBlue!70!black},
+    headfont=\bfseries\sffamily,
     bodyfont=\normalfont,
     mdframed={
-        linewidth=2pt,
-        rightline=false, topline=false, bottomline=false,
-        linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+        backgroundcolor=exercisebg,
+        linecolor=exerciselines,
+        linewidth=0.5pt,
+        innertopmargin=8pt,
+        innerbottommargin=8pt,
+        nobreak=true,
     }
-]{thmbluebox}
+]{DEF}
 
 \declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{RawSienna!70!black},
+    headfont=\bfseries\sffamily,
     bodyfont=\normalfont,
     mdframed={
-        linewidth=2pt,
+        linewidth=1pt,
         rightline=false, topline=false, bottomline=false,
-        linecolor=RawSienna, backgroundcolor=RawSienna!5,
+        linecolor=gray!40,
+        innerleftmargin=10pt,
     }
-]{thmredbox}
+]{MSCL}
 
 \declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{RawSienna!70!black},
+    headfont=\bfseries\itshape\sffamily,
     bodyfont=\normalfont,
     numbered=no,
     mdframed={
-        linewidth=2pt,
-        rightline=false, topline=false, bottomline=false,
-        linecolor=RawSienna, backgroundcolor=RawSienna!1,
+        topline=false, bottomline=false, rightline=false, leftline=false,
     },
     qed=\qedsymbol
-]{thmproofbox}
+]{PROOF}
 
-\declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{NavyBlue!70!black},
-    bodyfont=\normalfont,
-    numbered=no,
-    mdframed={
-        linewidth=2pt,
-        rightline=false, topline=false, bottomline=false,
-        linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
-    },
-]{thmexplanationbox}
+\declaretheorem[style=DEF, name=Definición]{definicion}
+\declaretheorem[style=DEF, name=Axioma]{axioma}
 
-\declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{Purple!70!black},
-    bodyfont=\normalfont,
-    mdframed={
-        linewidth=2pt,
-        rightline=false, topline=false, bottomline=false,
-        linecolor=Purple, backgroundcolor=Purple!5,
-    }
-]{thmexbox}
+\declaretheorem[style=THMs, name=Teorema]{teorema}
+\declaretheorem[style=THMs, name=Proposición]{proposicion}
+\declaretheorem[style=THMs, name=Lema]{lema}
+\declaretheorem[style=THMs, numbered=no, name=Corolario]{corolario}
+\declaretheorem[style=THMs, name=Tarea]{tarea}
+\declaretheorem[style=THMs, name=Método]{metodo}
 
-\declaretheoremstyle[
-    headfont=\bfseries\sffamily\color{Purple!70!black},
-    bodyfont=\normalfont,
-    numbered=no,
-    mdframed={
-        linewidth=2pt,
-        rightline=false, topline=false, bottomline=false,
-        linecolor=Purple, backgroundcolor=Purple!2,
-    }
-]{thmsolbox}
+\declaretheorem[style=MSCL, numbered=no, name=Ejemplo]{ejemplo}
+\declaretheorem[style=MSCL, numbered=no, name=Observación]{observacion}
+\declaretheorem[style=MSCL, numbered=no, name=Nota]{nota}
+\declaretheorem[style=MSCL, numbered=no, name=Ejercicio]{ejercicio}
+\declaretheorem[style=MSCL, numbered=no, name=Borrador]{borrador}
+\declaretheorem[style=MSCL, numbered=no, name=Solución]{solucion}
 
-\declaretheorem[style=thmgreenbox, name=Definición]{definicion}
-\declaretheorem[style=thmredbox, name=Teorema]{teorema}
-\declaretheorem[style=thmredbox, name=Proposición]{proposicion}
-\declaretheorem[style=thmredbox, name=Lema]{lema}
-\declaretheorem[style=thmredbox, numbered=no, name=Corolario]{corolario}
-\declaretheorem[style=thmbluebox, numbered=no, name=Ejemplo]{ejemplo}
-\declaretheorem[style=thmbluebox, numbered=no, name=Borrador]{borrador}
-\declaretheorem[style=thmexbox, name=Ejercicio]{ejercicio}
-\declaretheorem[style=thmredbox, name=Método]{metodo}
-
-\declaretheorem[style=thmproofbox, name=Demostración]{replacementproof}
-\renewenvironment{proof}{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
-
-\declaretheorem[style=thmexplanationbox, name=Explicación]{tmpexplanation}
-\newenvironment{explicacion}{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
-
-\declaretheorem[style=thmbluebox, numbered=no, name=Observación]{observacion}
-\declaretheorem[style=thmbluebox, numbered=no, name=Nota]{nota}
-
-\declaretheorem[style=thmsolbox, name=Solución]{solucionenv}
-\newenvironment{solucion}{\vspace{-10pt}\begin{solucionenv}}{\end{solucionenv}}
-
-\usepackage{xifthen}
-
+\let\proof\relax
+\let\endproof\relax
+\declaretheorem[style=PROOF, name=Demostración]{proof}
 
 % =========================
 % Clase...
@@ -192,4 +178,3 @@
 % Autor
 % =========================
 \author{César Pérez Amador}
-
