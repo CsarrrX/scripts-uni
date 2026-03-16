@@ -82,8 +82,14 @@ class Clases(list):
             return all_numbers
 
         if "-" in arg:
-            start, end = [self.parser_clase_spec(bit) for bit in arg.split("-")] # Tomamos un inicio y fin separando el arg
-            return list(set(all_numbers) & set(range(start, end+1))) # Retornamos la interseccion de nuestras clases y el arg
+            # Dividimos el argumento (ej: "previa-ultima")
+            start, end = [self.parser_clase_spec(bit) for bit in arg.split("-")]
+            
+            # 1. Calculamos la intersección
+            interseccion = set(all_numbers) & set(range(start, end+1))
+            
+            # 2. Retornamos la lista ORDENADA
+            return sorted(list(interseccion))
 
         return [self.parser_clase_spec(arg)]
 
