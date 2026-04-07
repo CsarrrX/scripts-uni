@@ -3,7 +3,7 @@ from cursos import Cursos
 for curso in Cursos():
         clases = curso.clases
         curso = clases.curso.info["title"]
-        lineas = [r'\documentclass[a4paper]{report}',
+        lineas = [r'\documentclass[11pt, alphabet, spanish, oneside]{scrreprt}',
                  r'\input{../preamble.tex}',
                  fr'\title{{{curso}}}',
                  r'\begin{document}',
