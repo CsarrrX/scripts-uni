@@ -31,7 +31,7 @@ def main():
         cursoact = next(c for c in cursos if c.name == "cursoact")
         nueva = cursoact.clases.nueva_clase()
 
-        r = cursoact.clases.parser_clase_range("ultima")
+        r = cursoact.clases.parser_clase_range("previa-ultima")
         cursoact.clases.update_clases_master(r)
         cursoact.clases.compile_master()
 
@@ -47,7 +47,7 @@ def main():
     if accion == 'Nueva nota':
         nueva = clases.nueva_clase()
 
-        r = clases.parser_clase_range("ultima")
+        r = clases.parser_clase_range("previa-ultima")
         clases.update_clases_master(r)
         clases.compile_master()
 
