@@ -15,7 +15,6 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from cursos import Cursos
 
-# Importamos tu configuración personalizada
 from config import CALENDAR_ID, CURSO_ACTUAL_SYMLINK
 
 # --- CONFIGURACIÓN ---
@@ -87,7 +86,7 @@ def get_events():
         } for e in events_result.get('items', []) if 'dateTime' in e['start']]
         return cache_events
     except Exception as e:
-        # Si falla (ej. sin internet), mantenemos el caché previo
+        # Si falla mantenemos el caché previo
         return cache_events
 
 def print_polybar_status():
@@ -142,7 +141,6 @@ def schedule_updates():
     scheduler.run()
 
 if __name__ == '__main__':
-    # Esperamos un poco para asegurar que el sistema cargó el entorno gráfico e internet
     time.sleep(2)
     try:
         schedule_updates()
